@@ -21,24 +21,9 @@
 
 ---
 
-## 2. Running the GUI
+## 2. Running the Breast Tumor AI Service
 
-1. Navigate to the project folder:
-
-   ```bash
-   cd path/to/project/folder
-   ```
-2. Run the GUI:
-
-   ```bash
-   python main_gui.py
-   ```
-
----
-
-## 3. Running the Breast Tumor AI Service
-
-The breast tumor model is served separately through a FastAPI microservice.
+The breast tumor model is served separately through a FastAPI microservice. **You must start this before the GUI.**
 
 1. Activate the **breast_env** virtual environment:
 
@@ -70,8 +55,29 @@ The breast tumor model is served separately through a FastAPI microservice.
 
 ---
 
+## 3. Running the GUI
+
+1. Open a new terminal.
+2. Activate the main environment:
+
+   ```bash
+   conda activate mvi_env
+   ```
+3. Navigate to the project folder:
+
+   ```bash
+   cd path/to/project/folder
+   ```
+4. Run the GUI:
+
+   ```bash
+   python Assignment_GUI.py
+   ```
+
+---
+
 ## 4. Notes
 
-* Ensure the `models/` folder and all `.keras`, `.h5`, `.pth`, and `.joblib` files are in the same project directory as the GUI code.
+* Ensure the `AI models/` folder and all `.keras`, `.h5`, `.pth`, and `.joblib` files are in the same project directory as the GUI code.
 * The GUI will automatically detect models from these relative paths.
 * Do **not** close the terminal running `breast_service.py` while using the GUI.
