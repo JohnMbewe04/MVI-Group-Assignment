@@ -1,39 +1,46 @@
-# 📋 Instructions to Run the GUI
+# Instructions for Running the Machine Vision & AI System
 
-### 1. Install Python
+## 1. Install Python
 
-Make sure you have **Python 3.10 or later** installed.
-Check with:
+* Make sure you have **Python 3.10** installed (recommended).
 
-```bash
-python --version
-```
+  > Note: Some models may not work properly on Python 3.11+
+
+Download: [https://www.python.org/downloads/release/python-3100/](https://www.python.org/downloads/release/python-3100/)
 
 ---
 
-### 2. Create a Virtual Environment
+## 2. Set Up a Virtual Environment
 
-Open a terminal/command prompt inside this project folder and run:
-
-**Windows:**
+Open a terminal in the project folder and run:
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
 ```
 
-**Mac/Linux:**
+Activate the environment:
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+* **Windows (CMD):**
+
+  ```bash
+  venv\Scripts\activate
+  ```
+* **Windows (PowerShell):**
+
+  ```powershell
+  .\venv\Scripts\activate
+  ```
+* **Mac/Linux:**
+
+  ```bash
+  source venv/bin/activate
+  ```
 
 ---
 
-### 3. Install Dependencies
+## 3. Install Required Libraries
 
-Once the environment is activated, install all required libraries:
+Install all dependencies from the provided `requirements.txt`:
 
 ```bash
 pip install -r requirements.txt
@@ -41,24 +48,49 @@ pip install -r requirements.txt
 
 ---
 
-### 4. Run the Application
+## 4. Start the Breast Tumor Microservice
 
-Now you can launch the GUI by running:
+The **Breast Tumor AI model** runs in its own microservice.
+While the virtual environment is active, run:
 
 ```bash
-python gui_app.py
+python breast_service.py
 ```
+
+* Leave this terminal running.
+* It will start a server at **[http://127.0.0.1:8001](http://127.0.0.1:8001)**.
+* Do **not** close this window while using the GUI.
 
 ---
 
-### 5. Notes
+## 5. Run the GUI
 
-* All **AI models** are located in the `models/` subfolders. Do **not** rename or move them, otherwise the GUI may not find them.
-* If you face an error like `ModuleNotFoundError`, make sure your virtual environment is **activated** before running the GUI.
-* To deactivate the environment when done:
+Open **another terminal**, activate the virtual environment again, and run:
 
 ```bash
-deactivate
+python gui.py
 ```
+
+This will launch the **Machine Vision & AI System GUI**.
+
+---
+
+## 6. Using the System
+
+* You can test different subsystems:
+
+  * **Machine Vision:** Rule-based X-ray, Fundus, MRI, Breast tumor detection
+  * **AI Models:** Deep learning models for Chest X-ray, Brain MRI, Fundus, Breast tumor
+
+* For **Breast Tumor AI**, ensure `breast_service.py` is running (step 4).
+
+---
+
+✅ That’s it! You’re ready to use the system.
+⚠️ If you encounter errors, double-check:
+
+* You are using **Python 3.10**
+* You installed all requirements
+* The **microservice is running** for breast tumor AI
 
 ---
