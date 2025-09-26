@@ -1,96 +1,77 @@
-# Instructions for Running the Machine Vision & AI System
+# Instructions to Run the Machine Vision & AI GUI
 
-## 1. Install Python
+## 1. Set Up the Environment
 
-* Make sure you have **Python 3.10** installed (recommended).
+1. Ensure you have **Python 3.11** installed (Anaconda recommended).
 
-  > Note: Some models may not work properly on Python 3.11+
+2. Create and activate a virtual environment:
 
-Download: [https://www.python.org/downloads/release/python-3100/](https://www.python.org/downloads/release/python-3100/)
+   ```bash
+   conda create -n mvi_env python=3.11 -y
+   conda activate mvi_env
+   ```
 
----
+   *(If you already have an environment, you may skip creating a new one.)*
 
-## 2. Set Up a Virtual Environment
+3. Install required libraries:
 
-Open a terminal in the project folder and run:
-
-```bash
-python -m venv venv
-```
-
-Activate the environment:
-
-* **Windows (CMD):**
-
-  ```bash
-  venv\Scripts\activate
-  ```
-* **Windows (PowerShell):**
-
-  ```powershell
-  .\venv\Scripts\activate
-  ```
-* **Mac/Linux:**
-
-  ```bash
-  source venv/bin/activate
-  ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ---
 
-## 3. Install Required Libraries
+## 2. Running the GUI
 
-Install all dependencies from the provided `requirements.txt`:
+1. Navigate to the project folder:
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   cd path/to/project/folder
+   ```
+2. Run the GUI:
 
----
-
-## 4. Start the Breast Tumor Microservice
-
-The **Breast Tumor AI model** runs in its own microservice.
-While the virtual environment is active, run:
-
-```bash
-python breast_service.py
-```
-
-* Leave this terminal running.
-* It will start a server at **[http://127.0.0.1:8001](http://127.0.0.1:8001)**.
-* Do **not** close this window while using the GUI.
+   ```bash
+   python main_gui.py
+   ```
 
 ---
 
-## 5. Run the GUI
+## 3. Running the Breast Tumor AI Service
 
-Open **another terminal**, activate the virtual environment again, and run:
+The breast tumor model is served separately through a FastAPI microservice.
 
-```bash
-python gui.py
-```
+1. Activate the **breast_env** virtual environment:
 
-This will launch the **Machine Vision & AI System GUI**.
+   ```bash
+   conda activate breast_env
+   ```
+
+2. Navigate to the project folder where `breast_service.py` is located:
+
+   ```bash
+   cd path/to/project/folder
+   ```
+
+3. Start the service:
+
+   ```bash
+   python breast_service.py
+   ```
+
+   ⚠️ **Note:** You must be in the same folder as `breast_service.py` when running this command.
+
+4. Once started, the service will be available at:
+
+   ```
+   http://127.0.0.1:8001
+   ```
+
+   Leave this terminal window running while you use the GUI.
 
 ---
 
-## 6. Using the System
+## 4. Notes
 
-* You can test different subsystems:
-
-  * **Machine Vision:** Rule-based X-ray, Fundus, MRI, Breast tumor detection
-  * **AI Models:** Deep learning models for Chest X-ray, Brain MRI, Fundus, Breast tumor
-
-* For **Breast Tumor AI**, ensure `breast_service.py` is running (step 4).
-
----
-
-✅ That’s it! You’re ready to use the system.
-⚠️ If you encounter errors, double-check:
-
-* You are using **Python 3.10**
-* You installed all requirements
-* The **microservice is running** for breast tumor AI
-
----
+* Ensure the `models/` folder and all `.keras`, `.h5`, `.pth`, and `.joblib` files are in the same project directory as the GUI code.
+* The GUI will automatically detect models from these relative paths.
+* Do **not** close the terminal running `breast_service.py` while using the GUI.
